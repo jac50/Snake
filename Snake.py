@@ -40,8 +40,13 @@ print (randy)
 pygame.draw.line(windowSurface,RED,(randx - 10 , randy), (randx + 10, randy))
 pygame.draw.line(windowSurface,RED,(randx,randy - 10), (randx, randy + 10))	
 pygame.display.update()
+newFood = False
 while True:
 	Running = True
+	if (newFood == True):
+		randx = random.randrange(15,485)
+		randy = random.randrange(15,485)
+		newFood = False
 	for event in pygame.event.get():
 		if event.type == QUIT:
 			pygame.quit()
@@ -84,7 +89,8 @@ while True:
 	if ((snake.centery >= randy - 8 and snake.centery <= randy + 8) and (snake.centerx >=randx - 8 and snake.centerx <=randx + 8)):
 		
 		print("YESYESYES")
-		windowSurface.fill(RED)		
+		newFood = True
+		
 	if (snake.top < 10 or snake.left < 10 or snake.bottom > 490 or snake.right > 490):
 		print("Game Over!\n")
 		Running = False	
